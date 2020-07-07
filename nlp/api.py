@@ -104,3 +104,7 @@ class ClassifierModelView(Resource):
         usecase = self.predict(app, text)
 
         return {'usecase': usecase}
+
+class GetView(Resource):
+    def get(self):
+        return "hello"
