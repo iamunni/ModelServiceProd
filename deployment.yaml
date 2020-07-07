@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-service-deployment
+  labels:
+    app: web
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: model-service-container
+        image: unni123123/model-service-image-repo:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+          name: model-service
+      imagePullSecrets:
+      - name: myregistrykey
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: model-service-service
+spec:
+  selector:
+    app: web
+  ports:
+    - port: 5000
+      targetPort: 5000
+  type: LoadBalancer
