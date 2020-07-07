@@ -22,7 +22,7 @@ spec:
         image: unni123123/model-service-image-repo:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 5000
+        - containerPort: 80
           name: model-service
       imagePullSecrets:
       - name: myregistrykey
@@ -35,6 +35,6 @@ spec:
   selector:
     app: web
   ports:
-    - port: 5000
-      targetPort: 5000
+    - port: 80
+      targetPort: 80
   type: LoadBalancer
