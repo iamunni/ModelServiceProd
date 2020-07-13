@@ -18,8 +18,8 @@ spec:
         app: web
     spec:
       containers:
-      - name: model-service-container
-        image: unni123123/model-service-image-repo:latest
+      - name: <container_name>
+        image: <image:latest>
         imagePullPolicy: Always
         ports:
         - containerPort: 80
