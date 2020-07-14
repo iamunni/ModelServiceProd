@@ -38,13 +38,3 @@ spec:
     - port: 80
       targetPort: 80
   type: LoadBalancer
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: myregistrykey
-type: Opaque
-data:
-  apiUrl: <docker_registry_api_url>
-  username: <docker_registry_username>
-  password: <docker_registry_password>
