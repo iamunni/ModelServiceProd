@@ -111,6 +111,9 @@ pipeline {
         failure {
             executeOnBuildFailure()
         }
+	always {
+	    cleanWs notFailBuild: true
+	}
     }
 }
 
