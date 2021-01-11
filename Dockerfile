@@ -1,4 +1,4 @@
-FROM python:3.6-slim
+FROM python:3.6-slim as build
 
 COPY . /flask_app
 WORKDIR /flask_app
@@ -15,6 +15,9 @@ RUN pip install -r requirements.txt --src /usr/local/src
 RUN python3 -m spacy download en_core_web_sm &&\
 	python3 -m spacy download en_core_web_md
 
-COPY nginx.conf /etc/nginx
+FROM python:3.6-slim
+COPY --from=base /flask_app /flask_app
+WORKDIR /flask_app
+COPY nginx.conf /etc/nginx/nginx.conf
 RUN chmod +x ./start.sh
 CMD ["./start.sh"]
